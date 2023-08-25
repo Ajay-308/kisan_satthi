@@ -23,8 +23,8 @@ imageName = ''
 solution = ''
 
 
-airquality = pickle.load(open('Air_Quality.pkl','rb'))
-fertilizer = pickle.load(open('Fertilizer.pkl','rb'))
+air_quality = pickle.load(open('Air_Quality.pkl','rb'))
+fertilizer_model = pickle.load(open('Fertilizer.pkl','rb'))
 crop_recommendation = pickle.load(open('croprecommendation2.pkl','rb'))
 crop_trading  = pickle.load(open('crop_trading.pkl','rb'))
 
@@ -37,6 +37,10 @@ def main():
 @app.route('/croprecommendation/')
 def croprecommendation():
     return render_template('crop_recommend.html')
+
+@app.route('/home/')
+def home():
+    return render_template('index.html')
 
 @app.route('/fertilizer/')
 def fertilizer():
@@ -67,7 +71,7 @@ def predictairquality():
         rpi = float(request.form['rspm_individual_pollutant_index'])
         spmi = float(request.form['spm_individual_pollutant_index'])
         sample_data = [[soi,noi,rpi,spmi]]
-        prediction = airquality.predict(sample_data)
+        prediction = air_quality.predict(sample_data)
 
         return render_template('airquality.html',output = prediction)
 
@@ -122,7 +126,7 @@ def predictfertilizer():
         fertilizer_data = [[temp,humidity,moisture,soil_type,
                             crop_type,nitrogen,
                             potassium,phosphorus]]
-        fertilizer_prediction = fertilizer.predict(fertilizer_data)
+        fertilizer_prediction = fertilizer_model.predict(fertilizer_data)
         if fertilizer_prediction == 0:
             fertilizer_prediction = '10-26-26'
         if fertilizer_prediction == 1:
@@ -355,4 +359,4 @@ def solutions(disease):
     return switcher.get(disease,"Not Found In The List")
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5500) 
+    app.run(debug=True,port=5500) 

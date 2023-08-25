@@ -9,7 +9,7 @@
         background-color: #fff;
         margin: 0;
         padding: 0;
-        opacity: 0.7;
+        /* opacity: 0.7; */
       }
 
       h1 {
@@ -20,11 +20,11 @@
       }
       .container {
         height: 64%;
-        margin-top: 20px;
+        margin-top: 50px;
       }
 
       form {
-        background-color: #a8df8e;
+        background-color: #66bb6a;
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -71,30 +71,41 @@
         display: block;
         justify-content: center !important;
 
-        z-index: -1 !important;
+        /* z-index: -1 !important; */
       }
       .svg image {
         height: 15%;
       }
+      .logo {
+        height: 80px;
+        width: 80px;
+      }
     </style>
   </head>
   <body>
+    <a href="{{ url_for('home')}}"
+      ><img
+        class="logo"
+        src="{{ url_for('static', filename='image/windmill.gif') }}"
+        alt=""
+    /></a>
+
     <div class="svg">
       <img
-        src="{{ url_for('static', filename='image/index.png') }}"
+        src="{{ url_for('static', filename='image/field.png') }}"
         alt="air_index"
         style="
           display: block;
           margin: 0 auto;
           margin-top: 5px;
           max-height: 15rem;
-          z-index: -1;
+          /* z-index: -1; */
         "
       />
-      <h1>Recommend Crop</h1>
     </div>
 
     <div class="container">
+      <h1>Recommend Crop</h1>
       <form method="POST" action="/predict_crop">
         <label for="Nitrogen">Nitrogen:</label>
         <input type="text" name="Nitrogen" required /><br />
