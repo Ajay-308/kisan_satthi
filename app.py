@@ -2,9 +2,11 @@ import os
 import warnings
 warnings.simplefilter("ignore")
 import tensorflow as tf
-from tensorflow.keras.preprocessing.image import img_to_array
+from werkzeug.utils import secure_filename
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.models import load_model
 from flask import Flask , render_template,request
+from PIL import Image
 
 import cv2
 import pickle
@@ -27,8 +29,17 @@ air_quality = pickle.load(open('Air_Quality.pkl','rb'))
 fertilizer_model = pickle.load(open('Fertilizer.pkl','rb'))
 crop_recommendation = pickle.load(open('croprecommendation2.pkl','rb'))
 crop_trading  = pickle.load(open('crop_trading.pkl','rb'))
+soil_model = load_model("soilTYPE.h5")  # Replace with your model path
 
+soil_classes = ['Black Soil', 'Cinder Soil', 'Laterite Soil', 'Peat Soil', 'Yellow Soil']
 
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def main():
@@ -37,6 +48,10 @@ def main():
 @app.route('/croprecommendation/')
 def croprecommendation():
     return render_template('crop_recommend.html')
+
+@app.route('/soiltype/')
+def soiltype():
+    return render_template('SoilType.html')
 
 @app.route('/home/')
 def home():
@@ -175,15 +190,15 @@ def predictcrop():
 @app.route('/predict_tradingvalue',methods=['GET','POST'])
 def predicttradingvalue():
     if request.method=='GET':
-        return render_template('trading.html')
+        return render_template('Trading.html')
     else:
         element = float(request.form['Element'])
         item = float(request.form['Item'])
         year = float(request.form['Year'])
         Unit = float(request.form['Unit'])
         trading_data = [[element,item,year,Unit]]
-        predicttradingvalue = crop_trading(trading_data)
-        return render_template('trading.html',trading_output = predicttradingvalue)
+        predicttradingvalue = crop_trading.predict(trading_data)
+        return render_template('Trading.html',trading_output = predicttradingvalue)
 @app.route("/upload", methods=["POST"])
 def upload():
     global im, result, percentage , i , imageName , solution
@@ -224,6 +239,34 @@ def upload():
             print(f'Error While Loading : {e}')  
     return render_template('complete.html', name=result, accuracy=percentage , img = imageName , soln = solution)
 
+@app.route("/upload_soil", methods=["POST"])
+def upload_soil():
+    if request.method == 'POST':
+        file = request.files['file']
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
+            # Ensure the UPLOAD_FOLDER directory exists
+            os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+            file.save(filepath)
+
+            # Resize the image to the expected input shape
+            image = Image.open(filepath)
+            image = image.resize((220, 220))
+            image_array = img_to_array(image)
+            image_array = np.expand_dims(image_array, axis=0)
+            image_array /= 255.0
+
+            predictions = soil_model.predict(image_array)
+            predicted_class_index = np.argmax(predictions[0])
+            predicted_class = soil_classes[predicted_class_index]
+
+            return render_template('soilAnalyis.html', predicted_class=predicted_class, image_path=filename)
+
+    return render_template('SoilType.html')
 
 def detect():
     global im, result, percentage
@@ -357,6 +400,8 @@ def solutions(disease):
         "Tomato__Tomato_YellowLeaf__Curl_Virus" : Tomato__Tomato_YellowLeaf__Curl_Virus,
         }
     return switcher.get(disease,"Not Found In The List")
+
+
 
 if __name__ == "__main__":
     app.run(debug=True,port=5500) 

@@ -79,7 +79,7 @@
       />
     </div>
     <h1>Trade Value Predictor</h1>
-    <form method="POST" action="/predict_crop">
+    <form method="POST" action="/predict_tradingvalue">
       <label for="Element">Element:</label>
       <input type="text" name="Element" required /><br />
 
@@ -97,7 +97,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const output = "{{ traiding_output | safe }}";
+        const output = "{{ trading_output | safe }}";
         if (output !== "") {
           Swal.fire({
             title: "Trading Prediction",
