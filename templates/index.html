@@ -7,14 +7,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <title>Kisan Sathi</title>
   </head>
   <body>
     <header>
       <nav class="header__nav w-120">
         <div class="header__logo">
-          <img src="image/windmill.gif" alt="">
+          <img src="{{ url_for('static', filename='image/windmill.gif') }}" alt="">
 
         </div>
         <div class="header__nav__content">
@@ -47,7 +47,7 @@
           <a href="#" class="btn btn__hero use">How to use </a>
         </div>
         <div class="hero__img">
-          <img src="image/man.png" alt="" />
+          <img src="{{ url_for('static', filename='image/man.png') }}" alt="" />
         </div>
       </div>
     </section>
@@ -64,56 +64,56 @@
             </div>
             <div class="opportunities__body">
                 <div class="opportunity">
-                    <img src="image/plantation.png" alt="" class="crop_img">
+                    <img src="{{ url_for('static', filename='image/crop.png') }}" alt="" class="crop_img">
   
                     <h4 class="opportunity__title">Crop recommendation</h4>
                     <p class="opportunity__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, ea mollitia. Neque reprehenderit nisi omnis repellendus libero alias, amet fuga.</p>
-                    <a href="#" class="btn btn__hero">Check </a>
+                    <a href="{{url_for('croprecommendation')}}" class="btn btn__hero">Check </a>
                     
                 </div>
 
                 <div class="opportunity active">
-                    <img src="image/soil.png" alt="Icon" class="opportunity__icon">
+                    <img src="{{ url_for('static', filename='image/soil.png') }}" alt="Icon" class="opportunity__icon">
                     <h4 class="opportunity__title">Soil recommendation</h4>
                     <p class="opportunity__description">
                         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
                     </p>
-                    <a href="#" class="btn btn__hero">Check </a>
+                    <a href="" class="btn btn__hero">Check </a>
 
                 </div>
                 <div class="opportunity">
-                    <img src="image/fertilizer.png" alt="Icon" class="opportunity__icon">
+                    <img src="{{ url_for('static', filename='image/fertilizer.png') }}" alt="Icon" class="opportunity__icon">
                     <h4 class="opportunity__title">Fertiliser Prediction
                     </h4>
                     <p class="opportunity__description">
                         At vero eos et accusamus et iusto odio praesentium atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia
                     </p>
-                    <a href="#" class="btn btn__hero">Check </a>
+                    <a href="{{url_for('fertilizer')}}" class="btn btn__hero">Check </a>
                 </div>
                 <div class="opportunity active">
-                    <img src="image/water-quality.png" alt="Icon" class="opportunity__icon">
-                    <h4 class="opportunity__title">Check Water Quality</h4>
+                    <img src="{{ url_for('static', filename='image/windmill.gif') }}" alt="Icon" class="opportunity__icon">
+                    <h4 class="opportunity__title">Check trading Value</h4>
                     <p class="opportunity__description">
                         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
                     </p>
-                    <a href="#" class="btn btn__hero">Check </a>
+                    <a href="{{url_for('croptrade')}}" class="btn btn__hero">Check </a>
                 </div>
                 <div class="opportunity">
-                    <img src="image/air-pollution.png" alt="Icon" class="opportunity__icon">
+                    <img src="{{ url_for('static', filename='image/air-pollution.png') }}" alt="Icon" class="opportunity__icon">
                     <h4 class="opportunity__title">Check Air Quality
                     </h4>
                     <p class="opportunity__description">
                         At vero eos et accusamus et iusto odio praesentium atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia
                     </p>
-                    <a href="#" class="btn btn__hero">Check </a>
+                    <a href="{{url_for('airquality')}}" class="btn btn__hero">Check </a>
                 </div>
                 <div class="opportunity active">
-                    <img src="image/agriculture.png" alt="Icon" class="opportunity__icon">
+                    <img src="{{ url_for('static', filename='image/agriculture.png') }}" alt="Icon" class="opportunity__icon">
                     <h4 class="opportunity__title">Crop disease prediction</h4>
                     <p class="opportunity__description">
                         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
                     </p>
-                    <a href="#" class="btn btn__hero">Check </a>
+                    <a href="" class="btn btn__hero">Check </a>
                 </div>
 
 
