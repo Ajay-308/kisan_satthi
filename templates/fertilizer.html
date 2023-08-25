@@ -149,7 +149,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const output = "{{ fertilizer_output | safe }}";
+        const output = "{{ fertilizer_output| safe }}";
         if (output !== "") {
           Swal.fire({
             title: "fertilizer Prediction",
