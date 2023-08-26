@@ -86,6 +86,12 @@
       .svg img {
         padding: 2rem;
       }
+      .description {
+        font-style: italic;
+        max-width: 80vw;
+        margin-left: 5rem;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
@@ -127,6 +133,52 @@
 
         <button type="submit">Predict</button>
       </form>
+    </div>
+    <div class="description">
+      <h1>Features Description</h1>
+      <p>
+        <h3>Elements </h3>= {0: 'Export Quantity', 1: 'Export Value', 2: 'Import
+        Quantity', 3: 'Import Value', 4: 'Production'}
+      </p>
+      <br />
+      <p>
+        <h3>Items</h3>= {0: 'Cartonboard', 1: 'Case materials', 2: 'Chemical wood pulp',
+        3: 'Chemical wood pulp, sulphate, bleached', 4: 'Chemical wood pulp,
+        sulphate, unbleached', 5: 'Chemical wood pulp, sulphite', 6: 'Chemical
+        wood pulp, sulphite, bleached', 7: 'Chemical wood pulp, sulphite,
+        unbleached', 8: 'Dissolving wood pulp', 9: 'Fibreboard, compressed
+        (1961-1994)', 10: 'Hardboard', 11: 'Household and sanitary papers', 12:
+        'Industrial roundwood, coniferous (export/import)', 13: 'Industrial
+        roundwood, non-coniferous non-tropical (export/import)', 14: 'Industrial
+        roundwood, non-coniferous tropical (export/import)', 15: 'MDF/HDF', 16:
+        'Mechanical and semi-chemical wood pulp', 17: 'Mechanical wood pulp',
+        18: 'Newsprint', 19: 'OSB', 20: 'Other fibreboard', 21: 'Other
+        industrial roundwood, all species (export/import, 1961-1989)', 22:
+        'Other industrial roundwood, coniferous (production)', 23: 'Other
+        industrial roundwood, non-coniferous (production)', 24: 'Other paper and
+        paperboard', 25: 'Other paper and paperboard n.e.s. (not elsewhere
+        specified)', 26: 'Other papers mainly for packaging', 27: 'Particle
+        board', 28: 'Particle board and OSB (1961-1994)', 29: 'Plywood', 30:
+        'Printing and writing papers', 31: 'Printing and writing papers,
+        coated', 32: 'Printing and writing papers, uncoated, mechanical', 33:
+        'Printing and writing papers, uncoated, wood free', 34: 'Pulp from
+        fibres other than wood', 35: 'Pulpwood and particles, coniferous
+        (production, 1961-1997)', 36: 'Pulpwood and particles, non-coniferous
+        (production, 1961-1997)', 37: 'Pulpwood, round and split, all species
+        (export/import, 1961-1989)', 38: 'Pulpwood, round and split, coniferous
+        (production)', 39: 'Pulpwood, round and split, non-coniferous
+        (production)', 40: 'Recovered fibre pulp', 41: 'Recovered paper', 42:
+        'Sawlogs and veneer logs, coniferous', 43: 'Sawlogs and veneer logs,
+        non-coniferous', 44: 'Sawnwood, coniferous', 45: 'Sawnwood,
+        non-coniferous all', 46: 'Semi-chemical wood pulp', 47: 'Veneer sheets',
+        48: 'Wood briquettes and other agglomerates', 49: 'Wood charcoal', 50:
+        'Wood chips and particles', 51: 'Wood fuel, all species (export/import,
+        1961-2016)', 52: 'Wood fuel, coniferous', 53: 'Wood fuel,
+        non-coniferous', 54: 'Wood pellets', 55: 'Wood residues', 56: 'Wrapping
+        and packaging paper and paperboard (1961-1997)', 57: 'Wrapping papers'}
+      </p>
+      <br />
+      <p><h3>Units</h3> = {'1000 USD':0 ,'t':1 ,'m3' :2}</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
