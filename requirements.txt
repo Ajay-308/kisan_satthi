@@ -3,5 +3,4 @@ numpy
 opencv_contrib_python==4.8.0.74
 Pillow==9.4.0
 tensorflow
-tensorflow_intel==2.13.0
 Werkzeug==2.3.6
