@@ -8,7 +8,6 @@
         background-color: #fff;
         margin: 0;
         padding: 0;
-        opacity: 0.7;
       }
 
       h1 {
@@ -20,10 +19,15 @@
       .container {
         height: 64%;
         margin-top: 20px;
+        width: 80%;
+      }
+      .container form {
+        width: 80%;
+        margin-left: 13rem;
       }
 
       form {
-        background-color: #a8df8e;
+        background-color: #66bb6a;
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -62,12 +66,41 @@
         margin-top: 20px;
         text-align: center;
       }
+      .logo {
+        height: 100px;
+        width: 100px;
+        /* display: flex;
+        flex-direction: row; */
+      }
+      .container-1 {
+        display: flex;
+        flex-direction: row;
+        height: 10vh;
+        margin: auto;
+        width: 100%;
+      }
+      .container-1 h1 {
+        margin-left: 25rem;
+        margin-top: 30px;
+      }
+      .svg img {
+        padding: 2rem;
+      }
     </style>
   </head>
   <body>
+    <div class="container-1">
+      <a href="{{ url_for('home')}}"
+        ><img
+          class="logo"
+          src="{{ url_for('static', filename='image/windmill.gif') }}"
+          alt=""
+      /></a>
+      <h1>Trade Value Predictor</h1>
+    </div>
     <div class="svg">
       <img
-        src="{{ url_for('static', filename='image/crop_bow.png') }}"
+        src="{{ url_for('static', filename='image/trade.png') }}"
         alt="air_index"
         style="
           display: block;
@@ -78,22 +111,23 @@
         "
       />
     </div>
-    <h1>Trade Value Predictor</h1>
-    <form method="POST" action="/predict_tradingvalue">
-      <label for="Element">Element:</label>
-      <input type="text" name="Element" required /><br />
+    <div class="container">
+      <form method="POST" action="/predict_tradingvalue">
+        <label for="Element">Element:</label>
+        <input type="text" name="Element" required /><br />
 
-      <label for="Item">Item:</label>
-      <input type="text" name="Item" required /><br />
+        <label for="Item">Item:</label>
+        <input type="text" name="Item" required /><br />
 
-      <label for="Year">Year:</label>
-      <input type="text" name="Year" required /><br />
+        <label for="Year">Year:</label>
+        <input type="text" name="Year" required /><br />
 
-      <label for="Unit">Unit:</label>
-      <input type="text" name="Unit" required /><br />
+        <label for="Unit">Unit:</label>
+        <input type="text" name="Unit" required /><br />
 
-      <button type="submit">Predict</button>
-    </form>
+        <button type="submit">Predict</button>
+      </form>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
