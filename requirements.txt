@@ -5,3 +5,4 @@ Pillow==9.4.0
 tensorflow
 Werkzeug
 scikit-learn
+waitress
